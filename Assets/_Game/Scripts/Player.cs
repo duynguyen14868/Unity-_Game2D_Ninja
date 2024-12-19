@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // SerializeField: để nấy từ bên ngoài
     [SerializeField] private Rigidbody2D rb;
@@ -16,21 +16,38 @@ public class NewBehaviourScript : MonoBehaviour
     private bool isGrounded = true;    // check xem có đanh ở trên mặt đất không
     private bool isJumping = false;     // check xem có đanh nhảy hay không
     private bool isAttack = false;
+    private bool isDeath = false;      // die
 
     private float horizontal;
 
     private string currentAnimName;
-    
+
+    private bool isActioning = false;
+
+    private int coin = 0;
+
+    private Vector3 savePoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //savePoint = transform.position;
+        SavePoint();
+        OnInit();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    //void FixedUpdate()
+    //{
+        
+    //}
+    void Update()
     {
+        if (isDeath)
+        {
+            return;
+        }
+
         isGrounded = CheckGrounded();
 
         // Lấy điều kiển đầu vào từ bàn phím 
@@ -79,6 +96,11 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 Throw();
             }
+
+            //if (isActioning)
+            //{
+            //    Idle();
+            //}
         }
 
         // check falling
@@ -92,7 +114,8 @@ public class NewBehaviourScript : MonoBehaviour
         // Khi bấm sẽ nấy hướng * deltaTime * speed còn không bấm gì thì sẽ dừng chực tiếp
         if (Mathf.Abs(horizontal) > 0.1f)
         {
-            rb.velocity = new Vector2(horizontal * Time.fixedDeltaTime * speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);            
+            //rb.velocity = new Vector2(horizontal * Time.fixedDeltaTime * speed, rb.velocity.y);
 
             // Quay mặt lại
             transform.rotation = Quaternion.Euler(new Vector3(0, horizontal > 0 ? 0 : 180));    // horizontal > 0 -> tra ve 0, horizontal <= 0 -> tra ve 180
@@ -104,6 +127,15 @@ public class NewBehaviourScript : MonoBehaviour
             ChangeAnim("idle");
             rb.velocity = Vector2.zero;
         }
+    }
+
+    public void OnInit()
+    {
+        isDeath = false;
+        isAttack = false;
+
+        transform.position = savePoint;
+        ChangeAnim("idle");
     }
 
     // Check xem có bắn chúng không
@@ -150,6 +182,10 @@ public class NewBehaviourScript : MonoBehaviour
         isJumping = true;
         ChangeAnim("jump");
         rb.AddForce(jumpForce * Vector2.up);
+
+        //isActioning = true;
+        ////Invoke(methodName"ResetAttack", time: 1.1f);
+        //Invoke(nameof(ResetAttack), 0.5f);
     }
 
     // Di chuyển
@@ -160,6 +196,36 @@ public class NewBehaviourScript : MonoBehaviour
             anim.ResetTrigger(animName);
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
+        }
+    }
+
+    // Chuyrn idle dung yen
+    //private void Idle()
+    //{
+    //    ChangeAnim("idle");
+    //    rb.velocity = Vector2.zero;
+    //}
+
+    internal void SavePoint()
+    {
+        savePoint = transform.position;
+    }
+
+    // Coin
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Coin")
+        {
+            coin++;
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.tag == "DeathZone")
+        {
+            isDeath = true;
+            ChangeAnim("die");
+            // Khởi tạo lại OnInit
+            Invoke(nameof(OnInit), 1f);
         }
     }
 }
