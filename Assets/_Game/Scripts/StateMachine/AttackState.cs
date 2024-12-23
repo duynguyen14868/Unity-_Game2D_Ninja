@@ -17,6 +17,9 @@ public class AttackState : IState
             enemy.Attack();
         }
 
+
+
+
         timer = 0;
     }
 
