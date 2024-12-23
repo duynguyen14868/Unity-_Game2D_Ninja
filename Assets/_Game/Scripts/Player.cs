@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
     // SerializeField: để nấy từ bên ngoài
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Animator anim; // animator: điền khiển anim, animation: clip
+    //[SerializeField] private Animator anim; // animator: điền khiển anim, animation: clip
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float speed = 5;
+
     [SerializeField] private float jumpForce = 350;
+
+    [SerializeField] private Kunai kunaiPrefab;
+    [SerializeField] private Transform throwPoin;
+    [SerializeField] private GameObject attackArea;
 
     private bool isGrounded = true;    // check xem có đanh ở trên mặt đất không
     private bool isJumping = false;     // check xem có đanh nhảy hay không
@@ -20,21 +25,21 @@ public class Player : MonoBehaviour
 
     private float horizontal;
 
-    private string currentAnimName;
+    //private string currentAnimName;
 
-    private bool isActioning = false;
+    //private bool isActioning = false;
 
     private int coin = 0;
 
     private Vector3 savePoint;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        //savePoint = transform.position;
-        SavePoint();
-        OnInit();
-    }
+    //void Start()
+    //{
+    //    //savePoint = transform.position;
+    //    //SavePoint();
+    //    //OnInit();
+    //}
 
     // Update is called once per frame
     //void FixedUpdate()
@@ -129,13 +134,29 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnInit()
+    public override void OnInit()
     {
+        base.OnInit();
         isDeath = false;
         isAttack = false;
 
         transform.position = savePoint;
         ChangeAnim("idle");
+
+        DeActiveAttack();
+
+        SavePoint();
+    }
+
+    public override void OnDespawn()
+    {
+        base.OnDespawn();
+        OnInit();
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
     }
 
     // Check xem có bắn chúng không
@@ -162,6 +183,8 @@ public class Player : MonoBehaviour
         ChangeAnim("attack");
         isAttack = true;
         Invoke(nameof(ResetAttack), 0.5f);
+        ActiveAttack();
+        Invoke(nameof(DeActiveAttack), 0.5f);
     }
 
     private void Throw()
@@ -169,6 +192,8 @@ public class Player : MonoBehaviour
         ChangeAnim("throw");
         isAttack = true;
         Invoke(nameof(ResetAttack), 0.5f);
+
+        Instantiate(kunaiPrefab, throwPoin.position, throwPoin.rotation);
     }
 
     private void ResetAttack()
@@ -189,15 +214,15 @@ public class Player : MonoBehaviour
     }
 
     // Di chuyển
-    public void ChangeAnim(string animName)
-    {
-        if (currentAnimName != animName)
-        {
-            anim.ResetTrigger(animName);
-            currentAnimName = animName;
-            anim.SetTrigger(currentAnimName);
-        }
-    }
+    //public void ChangeAnim(string animName)
+    //{
+    //    if (currentAnimName != animName)
+    //    {
+    //        anim.ResetTrigger(animName);
+    //        currentAnimName = animName;
+    //        anim.SetTrigger(currentAnimName);
+    //    }
+    //}
 
     // Chuyrn idle dung yen
     //private void Idle()
@@ -209,6 +234,15 @@ public class Player : MonoBehaviour
     internal void SavePoint()
     {
         savePoint = transform.position;
+    }
+
+    private void ActiveAttack()
+    {
+        attackArea.SetActive(true);
+    }
+    private void DeActiveAttack()
+    {
+        attackArea.SetActive(false);
     }
 
     // Coin
