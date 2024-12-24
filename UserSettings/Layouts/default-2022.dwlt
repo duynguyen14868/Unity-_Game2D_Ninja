@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Scene
   m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 319.19995
     height: 722.8
-  m_MinSize: {x: 276, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 133
+  controlID: 40
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -175,8 +175,8 @@ MonoBehaviour:
     y: 390.4
     width: 829.6
     height: 332.4
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -300,8 +300,8 @@ MonoBehaviour:
     y: 0
     width: 829.6
     height: 390.4
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -592,7 +592,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Game/Prefabs
+    - Assets/_Game/2D_Assets/Evinronment/BG
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -600,16 +600,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Game/Prefabs
+  - Assets/_Game/2D_Assets/Evinronment/BG
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Unity Hub\C24.07 HB ACADEMY\Games\2D
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 70650000
-    m_LastClickedID: 25968
-    m_ExpandedIDs: 0000000046650000486500004a6500004c6500004e650000506500005265000054650000
+    m_SelectedIDs: 8c680000
+    m_LastClickedID: 26764
+    m_ExpandedIDs: 00000000426800004468000046680000486800004a6800004c6800004e6800005068000062680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -637,7 +637,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000046650000486500004a6500004c6500004e650000506500005265000054650000
+    m_ExpandedIDs: 00000000426800004468000046680000486800004a6800004c6800004e68000050680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -668,18 +668,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c62300006c6b0000a46200001c630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: CombatText Controller
-      m_OriginalName: CombatText Controller
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -116566
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 3}
     m_CreateAssetUtility:
@@ -729,10 +729,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 40620000
-      m_LastClickedID: 25152
-      m_ExpandedIDs: 7c36ffff1afbffff0a620000
+      scrollPos: {x: 0, y: 300.4}
+      m_SelectedIDs: 4af6ffff
+      m_LastClickedID: -2486
+      m_ExpandedIDs: 1afbffffd6620000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1125,9 +1125,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.28707573, y: -0.26359165, z: -0.0029249971}
+    m_Target: {x: 161.09444, y: 9.52051, z: -0.15528007}
     speed: 2
-    m_Value: {x: -0.28707573, y: -0.26359165, z: -0.0029249971}
+    m_Value: {x: 160.8291, y: 9.288337, z: -0.16265984}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1177,9 +1177,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.432739
+    m_Target: 15.661517
     speed: 2
-    m_Value: 0.432739
+    m_Value: 16.399494
   m_Ortho:
     m_Target: 1
     speed: 2
