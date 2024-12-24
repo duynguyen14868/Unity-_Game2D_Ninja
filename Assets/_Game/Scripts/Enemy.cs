@@ -44,6 +44,7 @@ public class Enemy : Character
     protected override void OnDeath()
     {
         ChangState(null);
+        Destroy(healthBar.gameObject);
         base.OnDeath();
     }
 

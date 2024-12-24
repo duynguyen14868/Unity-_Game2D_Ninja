@@ -118,9 +118,8 @@ public class Player : Character
         // Moving
         // Khi bấm sẽ nấy hướng * deltaTime * speed còn không bấm gì thì sẽ dừng chực tiếp
         if (Mathf.Abs(horizontal) > 0.1f)
-        {
-            //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);            
-            rb.velocity = new Vector2(horizontal * Time.deltaTime * speed, rb.velocity.y);
+        {          
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
             // Quay mặt lại
             transform.rotation = Quaternion.Euler(new Vector3(0, horizontal > 0 ? 0 : 180));    // horizontal > 0 -> tra ve 0, horizontal <= 0 -> tra ve 180
