@@ -31,11 +31,12 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+    // Khi player cham vao MovingPlatform thi player se thanh con cua MovingPlatform
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.transform.SetParent(null);
+            collision.transform.SetParent(transform);
         }
     }
 

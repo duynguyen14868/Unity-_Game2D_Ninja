@@ -40,6 +40,7 @@ public class Character : MonoBehaviour
     {
         if (currentAnimName != animName)
         {
+            //anim.ResetTrigger(animName);
             anim.ResetTrigger(animName);
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);

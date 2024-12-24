@@ -85,7 +85,7 @@ public class Player : Character
 
             // change anim run
             // Đang nhảy k thực hiện đc gì
-            if (Mathf.Abs(horizontal) > 0.1f)
+            else if (Mathf.Abs(horizontal) > 0.1f && !isJumping)
             {
                 ChangeAnim("run");
             }
@@ -119,15 +119,15 @@ public class Player : Character
         // Khi bấm sẽ nấy hướng * deltaTime * speed còn không bấm gì thì sẽ dừng chực tiếp
         if (Mathf.Abs(horizontal) > 0.1f)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);            
-            //rb.velocity = new Vector2(horizontal * Time.fixedDeltaTime * speed, rb.velocity.y);
+            //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);            
+            rb.velocity = new Vector2(horizontal * Time.deltaTime * speed, rb.velocity.y);
 
             // Quay mặt lại
             transform.rotation = Quaternion.Euler(new Vector3(0, horizontal > 0 ? 0 : 180));    // horizontal > 0 -> tra ve 0, horizontal <= 0 -> tra ve 180
             //transform.localScale = new Vector3(horizontal, 1, 1);
         }
         // idle
-        else if (isGrounded)
+        else if (isGrounded && !isJumping)
         {
             ChangeAnim("idle");
             rb.velocity = Vector2.zero;

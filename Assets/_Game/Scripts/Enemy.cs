@@ -21,7 +21,7 @@ public class Enemy : Character
 
     public void Update()
     {
-        if (currentState != null)
+        if (currentState != null && !IsDead)
         {
             currentState.OnExecute(this);
         }
@@ -129,10 +129,10 @@ public class Enemy : Character
 
     private void ActiveAttack()
     {
-        attackArea.SetActive(true);
+        //attackArea.SetActive(true);
     }
     private void DeActiveAttack()
     {
-        attackArea.SetActive(false);
+        //attackArea.SetActive(false);
     }
 }
